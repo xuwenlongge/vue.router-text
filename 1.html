@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script src="vue221.js"></script>
+		<script src="vue-router231.js"></script>
+	</head>
+
+	<body>
+		<div id="app">
+				<router-link to="/login">文龙login router-link</router-link>
+				<router-link to="/register">文龙register点击这里指向to=register组件,模板会渲染 我已经在需要渲染的地方创建一个router-view的占位符</router-link>
+				
+				<router-view></router-view>
+		</div>
+	</body>
+</html>
+
+<script>
+   var App = Vue.extend({ });
+    var login = Vue.extend({
+    	template:"<div><h1>徐文龙login收到指令开始渲染</h1></div>"
+    });
+    var register = Vue.extend({
+    	template:"<div><h1>非文龙resgister收到点击命令开始渲染 路由router子数组中path指向这个组件,这是组件的template模板</h1></div>"
+    });
+   var router = new VueRouter({
+   	  routes:[
+   	    {path:'/login',component:login},
+   	    {path:'/register',component:register}
+   	  ]
+   });
+       
+     new Vue({
+     	el:'#app',
+     	router:router
+     })
+</script>
+
+ 这个文件是vue.js的路由 var router是创建一个路由, routes本身就是一个数组.
+ new vue 是根组件 或者叫做父组件,在根组件上,开劈一个路由,这里路由的path数据的component组件绑定已经创建的组件,当这个已经创建的组件模板数据改变了,会触发
+ view部分的的  router-link  所指向的to=组件,这个歌组件中的template数据就会改变.
